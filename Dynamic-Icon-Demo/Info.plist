@@ -43,5 +43,44 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+                <string></string>
+			</array>
+			<key>UIPrerenderedIcon</key>
+			<false/>
+		</dict>
+		<key>CFBundleAlternateIcons</key>
+		<dict>
+			<key>dark-icon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>dark-icon-20</string>
+					<string>dark-icon-29</string>
+					<string>dark-icon-40</string>
+					<string>dark-icon-60</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+			<key>funny-icon</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>funny-icon-20</string>
+					<string>funny-icon-29</string>
+					<string>funny-icon-40</string>
+					<string>funny-icon-60</string>
+				</array>
+				<key>UIPrerenderedIcon</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -8,13 +8,34 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+//enum IconType {
+//    case primary
+//    case dark
+//    case funny
+//}
 
+class ViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
+    
+    @IBAction func segmentedControlClick(_ segmentedControl: UISegmentedControl) {
+        var alternateIconName: String?
+        
+        if segmentedControl.selectedSegmentIndex == 0 {
+            // 设置为默认 icon
+            UIApplication.shared.setAlternateIconName(nil, completionHandler: nil)
+        } else if segmentedControl.selectedSegmentIndex == 1 {
+            alternateIconName = "dark-icon"
+        } else if segmentedControl.selectedSegmentIndex == 2 {
+            alternateIconName = "funny-icon"
+        }
+        
+        if let alternateIconName = alternateIconName {
+            UIApplication.shared.setAlternateIconName(alternateIconName, completionHandler: nil)
+        }
+    }
 }
 
