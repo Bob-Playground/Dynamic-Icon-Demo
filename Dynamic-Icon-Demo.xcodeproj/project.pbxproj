@@ -12,6 +12,7 @@
 		71132EA22182FAA30078297A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71132EA02182FAA30078297A /* Main.storyboard */; };
 		71132EA42182FAA40078297A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71132EA32182FAA40078297A /* Assets.xcassets */; };
 		71132EA72182FAA40078297A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71132EA52182FAA40078297A /* LaunchScreen.storyboard */; };
+		71132EAF218306EF0078297A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 71132EAE218306EF0078297A /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		71132EA32182FAA40078297A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71132EA62182FAA40078297A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71132EA82182FAA40078297A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71132EAE218306EF0078297A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		71132E902182FAA30078297A = {
 			isa = PBXGroup;
 			children = (
+				71132EAE218306EF0078297A /* README.md */,
 				71132E9B2182FAA30078297A /* Dynamic-Icon-Demo */,
 				71132E9A2182FAA30078297A /* Products */,
 			);
@@ -124,6 +127,7 @@
 			files = (
 				71132EA72182FAA40078297A /* LaunchScreen.storyboard in Resources */,
 				71132EA42182FAA40078297A /* Assets.xcassets in Resources */,
+				71132EAF218306EF0078297A /* README.md in Resources */,
 				71132EA22182FAA30078297A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,7 +217,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -268,7 +272,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,7 +295,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.huanglibo.Dynamic-Icon-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,7 +312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.huanglibo.Dynamic-Icon-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
