@@ -8,9 +8,9 @@
 
 icon 生成：[图标工厂](https://icon.wuruihong.com)
 
-## icon 规格
+## icon 的规格和存放位置
 
-如果仅有 iPhone APP，则需要以下9种的图标。详情请看`Assets.xcassets`中的`AppIcon`。
+如果仅有 iPhone APP，则需要以下8种规格的图标：  
 
 ```
 icon-20@2x.png
@@ -23,11 +23,7 @@ icon-60@2x.png
 icon-60@3x.png
 ```
 
-另外，`icon-1024.png`仅用于 `Assets.xcassets` 的 `AppIcon` 中。
-
-## 可选 icon 的存放位置
-
-需要放在 main bundle 中，而不是 `Assets.xcassets` 中。
+其中，`icon`是需要替换的名称，短横线后面的数字是图片的尺寸（单位：pt）。另外，`icon-1024.png`仅用于 `Assets.xcassets` 的 `AppIcon` 中，动态换 icon 时不需要。 可选 icon 图片的需要放在 `main bundle` 中，而不是 `Assets.xcassets` 中。  
 
 ## 相关 API
 
@@ -71,6 +67,8 @@ When the system is displaying one of your app's alternate icons, the value of th
 ## 参考链接
 
 [一个写的比较详细的博客](https://blog.csdn.net/KimBing/article/details/77996756?utm_source=blogxgwz10)
+
+[无弹框更换App图标](http://daiyi.pro/2017/05/01/ChangeYourAppIcons2/)
 
 [About Info.plist Keys and Values](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247)
 
