@@ -2,7 +2,7 @@
 
 ## 动画示例
 
-[](./media/demo.gif)
+![](./media/demo.gif)
 
 ## 简介
 
