@@ -72,11 +72,11 @@ When the system is displaying one of your app's alternate icons, the value of th
 
 更换 icon 后，系统会有一个弹框，提示 icon 发生了变化。这个弹框就是一个比较特殊的 `UIAlertViewController`：  
 
-<img src="./media/换icon的弹框.png" width="70%" height="70%"> 
+![](./media/换icon的弹框.png)
 
 普通的 `UIAlertViewController` 是这样的：  
 
-<img src="./media/普通弹框.png" width="70%" height="70%">   
+![](./media/普通弹框.png)
 
 可以看出**更换 icon 的弹框**没有 title 和 message。我们可以据此将**更换 icon 的弹框**和**普通弹框**区分开（一般我们也不会弹出一个不含 title 和 message 的弹框，对吧）。   
 
