@@ -25,7 +25,9 @@ icon-60@3x.png
 
 其中，`icon`是需要替换的名称，短横线后面的数字是图片的尺寸（单位：pt）。另外，`icon-1024.png`仅用于 `Assets.xcassets` 的 `AppIcon` 中，动态换 icon 时不需要。 可选 icon 图片的需要放在 `main bundle` 中，而不是 `Assets.xcassets` 中。  
 
-准备好图片之后，需要在 `plist` 中添加相关配置，详情请查看这篇文章：[iOS 动态改变应用图标](https://blog.csdn.net/KimBing/article/details/77996756?utm_source=blogxgwz10)，或者直接参看本项目的 `plist`。
+准备好图片之后，需要在 `plist` 中添加相关配置，详情请查看这篇文章：[iOS 动态改变应用图标](https://blog.csdn.net/KimBing/article/details/77996756?utm_source=blogxgwz10)，或者直接参看本项目的 `plist`。  
+
+最后，使用 `supportsAlternateIcons` 属性判断是否支持换 icon（plist 中是否有相关配置），如果支持，就可以使用`setAlternateIconName(_:completionHandler:)` 方法来执行 icon 更换。  
 
 ## 相关 API
 
