@@ -64,13 +64,88 @@ A handler to be executed with the results. After attempting to change your app's
 
 When the system is displaying one of your app's alternate icons, the value of this property is the name of the alternate icon (from your app's Info.plist file). When the system is displaying your app's primary icon, the value of this property is nil.
 
-## 参考链接
+## 无弹框更换 APP 图标
 
-[一个写的比较详细的博客](https://blog.csdn.net/KimBing/article/details/77996756?utm_source=blogxgwz10)
+更换 icon 后，系统会有一个弹框，提示 icon 发生了变化。这个弹框就是一个比较特殊的 `UIAlertViewController`：  
 
-[无弹框更换App图标](http://daiyi.pro/2017/05/01/ChangeYourAppIcons2/)
+<img src="./media/换icon的弹框.png" width="70%" height="70%"> 
+
+普通的 `UIAlertViewController` 是这样的：  
+
+<img src="./media/普通弹框.png" width="70%" height="70%">   
+
+可以看出**更换 icon 的弹框**没有 title 和 message。我们可以据此将**更换 icon 的弹框**和**普通弹框**区分开（一般我们也不会弹出一个不含 title 和 message 的弹框，对吧）。   
+
+如果换 icon 时不想让系统弹框，可以 hook `UIViewController` 的 `present(_:animated:completion:)` 方法，如果用 OC 写，直接在 `load`  中做 `method swizzling` 即可：  
+
+```objc
+#import "UIViewController+Present.h"
+#import <objc/runtime.h>
+@implementation UIViewController (Present)
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Method presentM = class_getInstanceMethod(self.class, @selector(presentViewController:animated:completion:));
+        Method presentSwizzlingM = class_getInstanceMethod(self.class, @selector(dy_presentViewController:animated:completion:));
+        // 交换方法实现
+        method_exchangeImplementations(presentM, presentSwizzlingM);
+    });
+}
+- (void)dy_presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion {
+    
+    if ([viewControllerToPresent isKindOfClass:[UIAlertController class]]) {
+        NSLog(@"title : %@",((UIAlertController *)viewControllerToPresent).title);
+        NSLog(@"message : %@",((UIAlertController *)viewControllerToPresent).message);
+        
+        UIAlertController *alertController = (UIAlertController *)viewControllerToPresent;
+        if (alertController.title == nil && alertController.message == nil) {
+            return;
+        } else {
+            [self dy_presentViewController:viewControllerToPresent animated:flag completion:completion];
+            return;
+        }
+    }
+    
+    [self dy_presentViewController:viewControllerToPresent animated:flag completion:completion];
+}
+@end
+```
+
+## Swift4 中的 Method Swizzling
+
+如果用 `Swift` 写，过程将比较曲折，因为 `load` 和 `initialize` 方法在 `Swift 4` 上使用会报错：  
+
+```
+Method 'initialize()' defines Objective-C class method 'initialize', which is not permitted by Swift
+
+Method 'load()' defines Objective-C class method 'load', which is not permitted by Swift
+```
+
+实际上，`load` 方法在 `Swift 1.2` 就不能使用了，而 `initialize` 方法在 `Swift 3.2` 被标识为了过期。  
+
+为了解决这个问题，只能用其他途径了。我参考了网上的一个示例： [在Swift4中实现Method Swizzling](http://blog.yaoli.site/post/如何优雅地在Swift4中实现Method-Swizzling)，而此示例是参考的国外的这篇博客：[Handling the Deprecation of initialize](http://jordansmith.io/handling-the-deprecation-of-initialize/)，其主要思想是：  
+
+> The goal was to define an easy way for classes to adopt a function, and have that function called before the class is used.
+ 
+也就是说，解决方案的核心思想就是让`类`实现一个`方法`，然后让这个`方法`在`类`使用前被调用。这样就能在这个`方法`中做 `Method Swizzling` 了。具体写法请参看上述博客或本项目。  
+
+## 参考资料
+
+**动态改变应用图标**：  
+
+[iOS 动态改变应用图标](https://blog.csdn.net/KimBing/article/details/77996756?utm_source=blogxgwz10)
 
 [About Info.plist Keys and Values](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247)
 
 [CFBundleIcons](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html#//apple_ref/doc/uid/TP40009249-SW13)
+
+**无弹框换 icon 及 Swift 中的 Method swizzling**：  
+
+[无弹框更换App图标](http://daiyi.pro/2017/05/01/ChangeYourAppIcons2/)
+
+[Method Swizzling](https://nshipster.com/method-swizzling/)
+
+[在Swift4中实现Method Swizzling](http://blog.yaoli.site/post/如何优雅地在Swift4中实现Method-Swizzling)
+
+[Handling the Deprecation of initialize](http://jordansmith.io/handling-the-deprecation-of-initialize/)
 
